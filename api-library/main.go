@@ -2,17 +2,17 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/indrabpn12/FinalProjectGolang.git/controllers"
+	"github.com/indrabpn12/FinalProjectGolang.git/controllers/bookcontroller"
 )
 
 func main() {
 	r := gin.Default()
 
-	r.GET("/books", controllers.FindBooks)
-	r.POST("/books", controllers.CreateBook)
-	r.GET("/books/:id", controllers.FindBook)
-	r.PATCH("/books/:id", controllers.UpdateBook)
-	r.DELETE("/books/:id", controllers.DeleteBook)
+	r.GET("/books", bookcontroller.Index)
+	r.POST("/books", bookcontroller.Store)
+	r.GET("/books/:id", bookcontroller.Show)
+	r.PUT("/books/:id", bookcontroller.Edit)
+	r.DELETE("/books/:id", bookcontroller.Destroy)
 
 	r.Run()
 }
