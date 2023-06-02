@@ -23,7 +23,7 @@ func Create(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	category := models.Category{Name: input.Name}
+	category := models.Category{Title: input.Title}
 	models.DB.Create(&category)
 
 	c.JSON(http.StatusOK, gin.H{"data": category})

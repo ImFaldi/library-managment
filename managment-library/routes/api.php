@@ -32,3 +32,10 @@ Route::get("/authors/{id}", [AuthorController::class, 'getAuthorById']);
 Route::post("/authors", [AuthorController::class, 'addAuthor']);
 Route::put("/authors/{id}", [AuthorController::class, 'updateAuthor']);
 Route::delete("/authors/{id}", [AuthorController::class, 'deleteAuthor']);
+
+
+Route::get("/categories", [CategoryController::class, 'getCategory']);
+Route::get("/categories/{id}", [CategoryController::class, 'getCategoryById']);
+Route::post("/categories", [CategoryController::class, 'addCategory']);
+Route::put("/categories/{id}", [CategoryController::class, 'updateCategory']);
+Route::delete("/categories/{id}", [CategoryController::class, 'deleteCategory']);

@@ -22,5 +22,13 @@ class BookSeed extends Seeder
             'status' => 'available',
             'year' => 1997,
         ]);
+
+        Book::create([
+            'title' => 'Harry Potter and the Chamber of Secrets',
+            'category_id' => 2,
+            'author_id' => 2,
+            'status' => 'available',
+            'year' => 1998,
+        ]);
     }
 }

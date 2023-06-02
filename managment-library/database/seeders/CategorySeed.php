@@ -18,5 +18,9 @@ class CategorySeed extends Seeder
         Category::create([
             'title' => 'Fantasy',
         ]);
+
+        Category::create([
+            'title' => 'Adventure',
+        ]);
     }
 }
