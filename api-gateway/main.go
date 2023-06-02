@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/indrabpn12/FinalProjectGolang.git/controllers/authorcontroller"
 	"github.com/indrabpn12/FinalProjectGolang.git/controllers/bookcontroller"
+	"github.com/indrabpn12/FinalProjectGolang.git/controllers/borrowcontroller"
 	"github.com/indrabpn12/FinalProjectGolang.git/controllers/categorycontroller"
 	"github.com/indrabpn12/FinalProjectGolang.git/models"
 )
@@ -30,6 +31,12 @@ func main() {
 	r.GET("api/categories/:id", categorycontroller.Show)
 	r.PUT("api/categories/:id", categorycontroller.Update)
 	r.DELETE("api/categories/:id", categorycontroller.Delete)
+
+	r.GET("api/borrows", borrowcontroller.Index)
+	r.POST("api/borrows", borrowcontroller.Create)
+	r.GET("api/borrows/:id", borrowcontroller.Show)
+	r.PUT("api/borrows/:id", borrowcontroller.Update)
+	r.DELETE("api/borrows/:id", borrowcontroller.Delete)
 
 	r.Run()
 }

@@ -6,6 +6,6 @@ type Book struct {
 	Title       string `json:"title"`
 	Category_id uint   `json:"category_id"`
 	Author_id   uint   `json:"author_id"`
-	Status      string `json:"status"`
+	Stock       int    `json:"stock"`
 	Year        string `json:"year"`
 }
