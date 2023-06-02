@@ -26,6 +26,6 @@ Untuk menginstal dan menjalankan Book Management System secara lokal, ikuti lang
 
 ## Tim Pengembang
 
-- Nama Pengembang 1 - [Profil GitHub](link-github-profile)
+- Nama Pengembang 1 - [Rifaldi Indrajaya](https://github.com/indrabpn12))
 - Nama Pengembang 2 - [Profil GitHub](link-github-profile)
 - Nama Pengembang 2 - [Profil GitHub](link-github-profile)
