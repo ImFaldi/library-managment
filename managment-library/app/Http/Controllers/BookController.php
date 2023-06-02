@@ -16,4 +16,50 @@ class BookController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function getBookById($id)
+    {
+        $response = Http::get('http://localhost:8080/api/books/' . $id);
+        $data = $response->json();
+
+        return response()->json($data, 200);
+    }
+
+    public function addBook(Request $request)
+    {
+        $response = Http::post('http://localhost:8080/api/books', [
+            'title' => $request->title,
+            'author_id' => $request->author_id,
+            'category_id' => $request->category_id,
+            'status' => $request->status,
+            'year' => $request->year
+        ]);
+        $data = $response->json();
+
+        return response()->json($data, 200);
+    }
+
+    public function updateBook(Request $request, $id)
+    {
+        $response = Http::put('http://localhost:8080/api/books/' . $id, [
+            'title' => $request->title,
+            'author_id' => $request->author_id,
+            'category_id' => $request->category_id,
+            'status' => $request->status,
+            'year' => $request->year
+        ]);
+        $data = $response->json();
+
+        return response()->json($data, 200);
+    }
+
+    public function deleteBook($id)
+    {
+        $response = Http::delete('http://localhost:8080/api/books/' . $id);
+        $data = $response->json();
+
+        return response()->json($data, 200);
+    }
+
+
 }

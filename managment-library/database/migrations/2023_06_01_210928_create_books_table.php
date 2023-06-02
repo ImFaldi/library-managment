@@ -22,7 +22,7 @@ return new class extends Migration
             ->constrained('authors')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->boolean('status')->default(0);
+            $table->string('status');
             $table->year('year');
             $table->timestamps();
         });
