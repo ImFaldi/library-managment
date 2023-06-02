@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Book;
+use App\Models\User;
 
-class BookSeed extends Seeder
+class UserSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,11 @@ class BookSeed extends Seeder
     {
         //
 
-        Book::create([
-            'title' => 'Harry Potter',
-            'category_id' => 1,
-            'author_id' => 1,
-            'stock' => 10,
-            'year' => 2000
+        User::create([
+            'name' => 'Harry Potter',
+            'email' => 'harry@gmail.com',
+            'password' => '12345678',
+            'role' => 'admin'
         ]);
     }
 }
