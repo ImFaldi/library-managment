@@ -16,10 +16,17 @@ class UserSeed extends Seeder
         //
 
         User::create([
-            'name' => 'Harry Potter',
-            'email' => 'harry@gmail.com',
-            'password' => '12345678',
-            'role' => 'admin'
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'role' => 'admin',
+        ]);
+
+        User::create([
+            'name' => 'superadmin',
+            'email' => 'superA@gmail.com',
+            'password' => bcrypt('superadmin'),
+            'role' => 'superadmin',
         ]);
     }
 }
