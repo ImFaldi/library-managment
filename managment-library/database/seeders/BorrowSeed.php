@@ -20,7 +20,8 @@ class BorrowSeed extends Seeder
             'book_id' => 1,
             'status' => 'borrowed',
             'borrow_date' => '2021-06-01',
-            'return_date' => '2021-06-08'
+            'return_date' => '2021-06-08',
+            'penalty' => '0'
         ]);
     }
 }
