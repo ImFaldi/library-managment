@@ -18,9 +18,9 @@ class BorrowSeed extends Seeder
         Borrow::create([
             'user_id' => 1,
             'book_id' => 1,
-            'status' => 'borrowed',
             'borrow_date' => '2021-06-01',
             'return_date' => '2021-06-08',
+            'status' => 'borrowed',
             'penalty' => '0'
         ]);
     }
