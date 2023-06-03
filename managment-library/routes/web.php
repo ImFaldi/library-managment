@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::get('/table', [DashboardController::class, 'table'])->name('tables');
 });
