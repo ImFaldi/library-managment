@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -20,9 +21,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 //Book API
 Route::get("/books", [BookController::class, 'getBook']);
 Route::get("/books/{id}", [BookController::class, 'getBookById']);

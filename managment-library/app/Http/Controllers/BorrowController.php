@@ -7,22 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 class BorrowController extends Controller
 {
-    //
-
-    public function createBorrow(Request $request)
-    {
-        $response = Http::post('http://localhost:8080/api/borrows', [
-            'user_id' => $request->user_id,
-            'book_id' => $request->book_id,
-            'borrow_date' => $request->borrow_date,
-            'return_date' => $request->return_date,
-            'status' => $request->status
-        ]);
-
-        $data = $response->json();
-
-        return response()->json($data, 200);
-    }
 
     public function getBorrow()
     {
@@ -47,7 +31,8 @@ class BorrowController extends Controller
             'book_id' => $request->book_id,
             'borrow_date' => $request->borrow_date,
             'return_date' => $request->return_date,
-            'status' => $request->status
+            'status' => $request->status,
+            'penalty' => $request->penalty
         ]);
 
         $data = $response->json();
@@ -58,6 +43,22 @@ class BorrowController extends Controller
     public function deleteBorrow($id)
     {
         $response = Http::delete('http://localhost:8080/api/borrows/' . $id);
+        $data = $response->json();
+
+        return response()->json($data, 200);
+    }
+
+    public function addBorrow(Request $request)
+    {
+        $response = Http::post('http://localhost:8080/api/borrows', [
+            'user_id' => $request->user_id,
+            'book_id' => $request->book_id,
+            'borrow_date' => $request->borrow_date,
+            'return_date' => $request->return_date,
+            'status' => $request->status,
+            'penalty' => $request->penalty
+        ]);
+
         $data = $response->json();
 
         return response()->json($data, 200);

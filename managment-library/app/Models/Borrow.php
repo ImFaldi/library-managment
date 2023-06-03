@@ -16,6 +16,7 @@ class Borrow extends Model
         'borrow_date',
         'return_date',
         'status',
+        'penalty,'
     ];
 
     public function user(): BelongsTo

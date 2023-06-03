@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -30,4 +32,26 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Logout successfully');
     }
 
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'role' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        if($user){
+            return redirect()->back()->with('success', 'Register successfully');
+        }else{
+            return redirect()->back()->with('error', 'Register failed');
+        }
+    }
 }

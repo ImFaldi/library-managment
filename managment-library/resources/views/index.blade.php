@@ -62,7 +62,9 @@
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
                                         Don't have an account?
-                                        <a href="javascript:;" class="text-info text-gradient font-weight-bold">Register</a>
+                                        <button type="button" class="text-info text-gradient font-weight-bold"
+                                            data-bs-toggle="modal" data-bs-target="#modal-register" style=" border: none;">
+                                            Register</button>
                                     </p>
                                 </div>
                             </div>
@@ -78,4 +80,55 @@
             </div>
         </section>
     </main>
+    <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card card-plain">
+                        <div class="card-header pb-0 text-left">
+                            <h3 class="font-weight-bolder text-info text-gradient">Register</h3>
+                        </div>
+                        <div class="card-body">
+                            <form role="form text-left" method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <label>Name</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Name" aria-label="Name"
+                                        aria-describedby="name-addon" name="name">
+                                </div>
+                                <label>Email</label>
+                                <div class="input-group mb-3">
+                                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                                        aria-describedby="email-addon" name="email">
+                                </div>
+                                <label>Password</label>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                                        aria-describedby="password-addon" name="password">
+                                </div>
+                                <label>Role</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-control" name="role">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
+                                </div>
+                                <label>Phone Number</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" placeholder="Phone Number"
+                                        aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit"
+                                        class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

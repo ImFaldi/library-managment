@@ -15,10 +15,15 @@ class DashboardController extends Controller
     {
         //role based authentication
         if(auth()->user()->role == 'admin'){
-            return view('dashboard.home');
+            return view('dashboard.admin');
         }
         if(auth()->user()->role == 'user'){
-            return view('dashboard.user');
+            return view('dashboard.home');
         }
+    }
+
+    public function profile()
+    {
+        return view('dashboard.profile');
     }
 }
