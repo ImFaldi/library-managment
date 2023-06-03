@@ -54,4 +54,27 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Register failed');
         }
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'role' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($id);
+
+        $user->update([
+            'name' => $request->name,
+            'role' => $request->role,
+            'email' => $request->email,
+        ]);
+
+        if($user){
+            return redirect()->back()->with('success', 'Profile updated successfully');
+        }else{
+            return redirect()->back()->with('error', 'Profile update failed');
+        }
+    }
 }

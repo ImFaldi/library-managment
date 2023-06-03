@@ -10,25 +10,6 @@ class UserController extends Controller
 {
     //
 
-    public function addUser(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'role' => 'required',
-            'password' => 'required',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'role' => $request->role,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json(['message' => 'User created successfully', 'user' => $user]);
-    }
-
     public function getUsers()
     {
         $users = User::all();
@@ -52,7 +33,11 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
 
-        return response()->json(['message' => 'User updated successfully', 'user' => $user]);
+        if($user){
+            return redirect()->back()->with('success', 'User updated successfully');
+        }else{
+            return redirect()->back()->with('error', 'User update failed');
+        }
     }
 
     public function deleteUser($id)

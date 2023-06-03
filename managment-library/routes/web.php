@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/updateProfile/{id}', [AuthController::class, 'updateProfile'])->name('updateProfile');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
