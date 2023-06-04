@@ -57,13 +57,70 @@
                                             <td>
                                                 <div class="col-lg-6 col-md-6">
                                                     {{--  button trigger modal  --}}
-                                                    <button type="button" class="btn bg-gradient-primary w-50 d-flex justify-content-center"
+                                                    <button type="button"
+                                                        class="btn bg-gradient-primary w-50 d-flex justify-content-center"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#modal-edit{{ Auth::user()->id }}">
                                                         Edit
                                                 </div>
                                             </td>
                                         </tr>
+                                        {{-- modal edit member --}}
+                                        <div class="modal fade" id="modal-edit{{ Auth::user()->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body p-0">
+                                                        <div class="card card-plain">
+                                                            <div class="card-header pb-0 text-left">
+                                                                <h3 class="font-weight-bolder text-primary text-gradient">
+                                                                    Edit</h3>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <form role="form text-left" method="POST"
+                                                                    action="{{ route('updateUser', $item->id) }}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <label>Name</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Name" aria-label="Name"
+                                                                            aria-describedby="name-addon" name="name"
+                                                                            value="{{ $item->name }}">
+                                                                    </div>
+                                                                    <label>Email</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="email" class="form-control"
+                                                                            placeholder="Email" aria-label="Email"
+                                                                            aria-describedby="email-addon" name="email"
+                                                                            value="{{ $item->email }}">
+                                                                    </div>
+                                                                    <label>Role</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <select class="form-control" name="role"
+                                                                            value="{{ $item->role }}">
+                                                                            <option value="member">Member</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <label>Phone Number</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="varchar" class="form-control"
+                                                                            placeholder="Phone Number"
+                                                                            aria-label="Phone Number"
+                                                                            aria-describedby="phone-addon" name="phone"
+                                                                            value="{{ $item->phone }}">
+                                                                    </div>
+                                                                    <div class="text-center">
+                                                                        <button type="submit"
+                                                                            class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Update</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -252,52 +309,5 @@
         </div>
     </div>
 
-    {{-- modal edit member --}}
-    <div class="modal fade" id="modal-edit{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <div class="card card-plain">
-                        <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-primary text-gradient">Edit</h3>
-                        </div>
-                        <div class="card-body">
-                            <form role="form text-left" method="POST"
-                                action="{{ route('updateUser', $user->id) }}">
-                                @csrf
-                                @method('PUT')
-                                <label>Name</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                                        aria-describedby="name-addon" name="name" value="{{ $user->name }}">
-                                </div>
-                                <label>Email</label>
-                                <div class="input-group mb-3">
-                                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                                        aria-describedby="email-addon" name="email" value="{{ $user->email }}">
-                                </div>
-                                <label>Role</label>
-                                <div class="input-group mb-3">
-                                    <select class="form-control" name="role" value="{{ $user->role }}">
-                                        <option value="member">Member</option>
-                                    </select>
-                                </div>
-                                <label>Phone Number</label>
-                                <div class="input-group mb-3">
-                                    <input type="varchar" class="form-control" placeholder="Phone Number"
-                                        aria-label="Phone Number" aria-describedby="phone-addon" name="phone"
-                                        value="{{ $user->phone }}">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit"
-                                        class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Update</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection

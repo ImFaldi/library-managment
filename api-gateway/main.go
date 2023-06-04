@@ -37,6 +37,7 @@ func main() {
 	r.GET("api/borrows/:id", borrowcontroller.Show)
 	r.PUT("api/borrows/:id", borrowcontroller.Update)
 	r.DELETE("api/borrows/:id", borrowcontroller.Delete)
+	r.PUT("api/borrows/return/:id", borrowcontroller.Return)
 
 	r.Run()
 }

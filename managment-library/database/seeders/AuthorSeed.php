@@ -24,7 +24,7 @@ class AuthorSeed extends Seeder
         Author::create([
             'name' => 'J. R. R. Tolkien',
             'email' => 'Tol@gmail.com',
-            'phone' => '081254567890',
+            'phone' => '081251567890',
         ]);
     }
 }

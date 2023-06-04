@@ -77,3 +77,18 @@ func Delete(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": true})
 }
+
+// Return is a function to return a borrow data by id
+
+func Return(c *gin.Context) {
+	var borrow models.Borrow
+
+	if err := models.DB.Where("id = ?", c.Param("id")).First(&borrow).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Data not found!"})
+		return
+	}
+
+	models.DB.Model(&borrow).Update("status", "Returned", "penalty", c.Param("penalty"))
+
+	c.JSON(http.StatusOK, gin.H{"data": borrow})
+}

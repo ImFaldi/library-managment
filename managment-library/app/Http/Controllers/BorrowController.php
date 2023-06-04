@@ -64,4 +64,19 @@ class BorrowController extends Controller
         return response()->json($data, 200);
     }
 
+    public function returnBorrow(Request $request, $id)
+    {
+        $response = Http::put('http://localhost:8080/api/borrows/return/' . $id, [
+            'user_id' => $request->user_id,
+            'book_id' => $request->book_id,
+            'borrow_date' => $request->borrow_date,
+            'return_date' => $request->return_date,
+            'status' => $request->status,
+            'penalty' => $request->penalty
+        ]);
+
+        $data = $response->json();
+
+        return redirect()->intended('dashboard')->with('success', 'Book has been returned');
+    }
 }
