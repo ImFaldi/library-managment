@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 my-sm-auto ms-sm-4 me-sm-auto mx-auto mt-3">
                         {{--  button trigger modal  --}}
-                        <button type="button" class="btn bg-gradient-primary w-50" data-bs-toggle="modal"
+                        <button type="button" class="btn bg-gradient-success w-50 btn-sm" data-bs-toggle="modal"
                             data-bs-target="#modal-register">
                             Add New Member
                         </button>
