@@ -39,6 +39,7 @@ class AuthController extends Controller
             'role' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
+            'phone' => 'required',
         ]);
 
         $user = User::create([
@@ -46,6 +47,7 @@ class AuthController extends Controller
             'role' => $request->role,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone' => $request->phone,
         ]);
 
         if($user){
@@ -61,6 +63,7 @@ class AuthController extends Controller
             'name' => 'required',
             'role' => 'required',
             'email' => 'required',
+            'phone' => 'required',
         ]);
 
         $user = User::find($id);
@@ -69,6 +72,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'role' => $request->role,
             'email' => $request->email,
+            'phone' => $request->phone,
         ]);
 
         if($user){

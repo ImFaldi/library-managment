@@ -30,7 +30,10 @@ class DashboardController extends Controller
 
     public function profile()
     {
-        return view('dashboard.profile');
+        //tampilkan semua role resespsionis
+        $resepsionis = User::where('role', 'resepsionis')->get();
+        $admin = User::where('role', 'admin')->get();
+        return view('dashboard.profile', compact('resepsionis', 'admin'));
     }
 
     public function table()

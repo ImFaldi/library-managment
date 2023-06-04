@@ -20,13 +20,15 @@ class UserSeed extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
             'role' => 'admin',
+            'phone' => '081234567890'
         ]);
 
         User::create([
-            'name' => 'superadmin',
-            'email' => 'superA@gmail.com',
-            'password' => bcrypt('superadmin'),
-            'role' => 'superadmin',
+            'name' => 'resepsionis',
+            'email' => 'res@gmail.com',
+            'password' => bcrypt('resepsionis'),
+            'role' => 'resepsionis',
+            'phone' => '081134567890'
         ]);
     }
 }

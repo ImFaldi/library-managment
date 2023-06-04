@@ -150,7 +150,11 @@
     </nav>
     <!-- End Navbar -->
     @yield('content')
+    <footer class="footer pt-3  ">
+            
+    </footer>
   </main>
+  
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>

@@ -23,6 +23,7 @@ class UserController extends Controller
             'name' => 'required',
             'role' => 'required',
             'email' => 'required',
+            'phone' => 'required',
         ]);
 
         $user = User::find($id);
@@ -31,6 +32,7 @@ class UserController extends Controller
             'name' => $request->name,
             'role' => $request->role,
             'email' => $request->email,
+            'phone' => $request->phone,
         ]);
 
         if($user){
