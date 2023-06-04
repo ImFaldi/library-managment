@@ -30,5 +30,13 @@ class UserSeed extends Seeder
             'role' => 'resepsionis',
             'phone' => '081134567890'
         ]);
+
+        User::create([
+            'name' => 'BookMember',
+            'email' => 'member@gmail.com',
+            'password' => bcrypt('member'),
+            'role' => 'member',
+            'phone' => '081134567890'
+        ]);
     }
 }
