@@ -75,8 +75,6 @@ class BorrowController extends Controller
             'penalty' => $request->penalty
         ]);
 
-        $data = $response->json();
-
         return redirect()->intended('dashboard')->with('success', 'Book has been returned');
     }
 }

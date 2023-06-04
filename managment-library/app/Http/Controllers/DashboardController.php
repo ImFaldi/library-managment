@@ -34,7 +34,9 @@ class DashboardController extends Controller
                 $denda = floor($selisih / (60 * 60 * 24)) * 10000;
 
                 //update denda dan di kasih misal 1000 menjadi 1.000
+                $b->save();
                 $b->penalty = number_format($denda, 0, ',', '.');
+
             }
         }
 

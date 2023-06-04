@@ -49,7 +49,7 @@ Route::get("/borrows/{id}", [BorrowController::class, 'getBorrowById']);
 Route::post("/borrows", [BorrowController::class, 'addBorrow']);
 Route::put("/borrows/{id}", [BorrowController::class, 'updateBorrow']);
 Route::delete("/borrows/{id}", [BorrowController::class, 'deleteBorrow']);
-Route::post("/borrows/return/{id}", [BorrowController::class, 'returnBorrow'])->name('borrow.return');
+Route::get("/borrows/return/{id}", [BorrowController::class, 'returnBorrow'])->name('borrow.return');
 
 //User API
 Route::get("/users", [UserController::class, 'getUsers']);

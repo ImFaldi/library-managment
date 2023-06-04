@@ -88,7 +88,7 @@ func Return(c *gin.Context) {
 		return
 	}
 
-	models.DB.Model(&borrow).Update("status", "Returned", "penalty", c.Param("penalty"))
+	models.DB.Model(&borrow).Update("status", "returned")
 
 	c.JSON(http.StatusOK, gin.H{"data": borrow})
 }

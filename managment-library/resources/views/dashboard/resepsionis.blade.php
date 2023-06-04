@@ -91,7 +91,7 @@
                                         @if ($item->return_date < $date_now && $item->status == 'borrowed')
                                             <span class="text-xs">Penalty : Rp. {{ $item->penalty }}</span>
                                         @endif
-                                        
+
                                         @if ($item->return_date > $date_now && $item->status == 'borrowed')
                                             <span class="text-xs">Penalty : don't have a penalty</span>
                                         @endif
@@ -130,25 +130,23 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                            <form action="{{ route('borrow.return', $item->id) }}" method="POST">
-                                                <div class="py-3 text-center">
-                                                    <i class="ni ni-bell-55 ni-3x"></i>
-                                                    <h4 class="text-gradient text-warning mt-4">Warning</h4>
-                                                    <p>Are you sure you want to return this book?</p>
-                                                    @if ($item->return_date < $date_now && $item->status == 'borrowed')
-                                                        <p class="text-danger">You have a penalty of Rp.
-                                                            {{ $item->penalty }}</p>
-                                                        <input type="hidden" name="penalty" value="{{ $item->penalty }}">
-                                                    @endif
-                                                    @if ($item->return_date > $date_now && $item->status == 'borrowed')
-                                                        <p class="text-success">You don't have a penalty</p>
-                                                    @endif
-                                                </div>
+                                                    <div class="py-3 text-center">
+                                                        <i class="ni ni-bell-55 ni-3x"></i>
+                                                        <h4 class="text-gradient text-warning mt-4">Warning</h4>
+                                                        <p>Are you sure you want to return this book?</p>
+                                                        @if ($item->return_date < $date_now && $item->status == 'borrowed')
+                                                            <p class="text-danger">You have a penalty of Rp.
+                                                                {{ $item->penalty }}</p>
+                                                        @endif
+                                                        @if ($item->return_date > $date_now && $item->status == 'borrowed')
+                                                            <p class="text-success">You don't have a penalty</p>
+                                                        @endif
+                                                    </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success">Return</button>
+                                                <a href="{{ route('borrow.return', $item->id) }}"
+                                                    class="btn btn-link text-white ml-auto">Yes, I'm sure</a>
                                             </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +179,8 @@
                                                     <div class="d-flex flex-column">
                                                         <h6 class="mb-1 text-dark text-sm">Book : {{ $item->book->title }}
                                                         </h6>
-                                                        <span class="text-xs">Borrow Date : {{ $item->borrow_date }}</span>
+                                                        <span class="text-xs">Borrow Date :
+                                                            {{ $item->borrow_date }}</span>
                                                     </div>
                                                 </div>
                                             </li>
