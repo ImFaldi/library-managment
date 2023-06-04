@@ -38,6 +38,9 @@ class DashboardController extends Controller
 
     public function table()
     {
-        return view('dashboard.table');
+        $member = User::where('role', 'member')->get();
+        $book = Book::all();
+        $borrow = Borrow::all();
+        return view('dashboard.table', compact('member','book','borrow'));
     }
 }
