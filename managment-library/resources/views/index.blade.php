@@ -111,12 +111,12 @@
                                 <div class="input-group mb-3">
                                     <select class="form-control" name="role">
                                         <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        <option value="resepsionis">Resepsionis</option>
                                     </select>
                                 </div>
                                 <label>Phone Number</label>
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control" placeholder="Phone Number"
+                                    <input type="varchar" class="form-control" placeholder="Phone Number"
                                         aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
                                 </div>
                                 <div class="text-center">
