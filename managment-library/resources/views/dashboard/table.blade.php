@@ -235,12 +235,27 @@
                                                                             aria-describedby="title-addon" name="title"
                                                                             value="{{ $item->title }}">
                                                                     </div>
+                                                                    <label>Stock</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Stock" aria-label="Stock"
+                                                                            aria-describedby="stock-addon" name="stock"
+                                                                            value="{{ $item->stock }}">
+                                                                    </div>
+                                                                    <label>Published Year</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Published Year"
+                                                                            aria-label="Published Year"
+                                                                            aria-describedby="year-addon" name="year"
+                                                                            value="{{ $item->year }}">
+                                                                    </div>
                                                                     <label>Category</label>
                                                                     <div class="input-group mb-3">
                                                                         <select class="form-control" name="category_id">
                                                                             @foreach ($book as $item)
-                                                                            <option value="{{ $item->category->id }}">
-                                                                                {{ $item->category->title }}
+                                                                                <option value="{{ $item->category->id }}">
+                                                                                    {{ $item->category->title }}
                                                                             @endforeach
                                                                             </option>
                                                                         </select>
@@ -253,19 +268,6 @@
                                                                                     {{ $item->author->name }}</option>
                                                                             @endforeach
                                                                         </select>
-                                                                    </div>
-                                                                    <label>Stock</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="varchar" class="form-control"
-                                                                            placeholder="Stock" aria-label="Stock"
-                                                                            aria-describedby="stock-addon" name="stock" value="{{ $item->stock }}">
-                                                                    </div>
-                                                                    <label>Published Year</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="varchar" class="form-control"
-                                                                            placeholder="Published Year"
-                                                                            aria-label="Published Year"
-                                                                            aria-describedby="year-addon" name="year" value="{{ $item->year }}">
                                                                     </div>
                                                                     <div class="text-center">
                                                                         <button type="submit"
@@ -405,7 +407,7 @@
                                 <div class="input-group mb-3">
                                     <input type="varchar" class="form-control" placeholder="Phone Number"
                                         aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
-                                        <input type="hidden" class="form-control" name="role" value="member">
+                                    <input type="hidden" class="form-control" name="role" value="member">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit"
@@ -450,7 +452,7 @@
                                 <div class="input-group mb-3">
                                     <input type="varchar" class="form-control" placeholder="Phone Number"
                                         aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
-                                        <input type="hidden" class="form-control" name="role" value="member">
+                                    <input type="hidden" class="form-control" name="role" value="member">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit"
