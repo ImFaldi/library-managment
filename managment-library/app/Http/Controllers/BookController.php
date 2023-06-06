@@ -27,12 +27,17 @@ class BookController extends Controller
 
     public function addBook(Request $request)
     {
+        $temp = $request->all();
+
+        $author_id = (int) $temp['author_id'];
+        $category_id = (int) $temp['category_id'];
+        $stock = (int) $temp['stock'];
         $response = Http::post('http://localhost:8080/api/books', [
             'title' => $request->title,
-            'author_id' => $request->author_id,
-            'category_id' => $request->category_id,
+            'author_id' => $author_id,
+            'category_id' => $category_id,
             'status' => $request->status,
-            'stock' => $request->stock,
+            'stock' => $stock,
             'year' => $request->year
         ]);
         $data = $response->json();
