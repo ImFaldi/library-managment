@@ -46,7 +46,7 @@ Route::delete("/categories/{id}", [CategoryController::class, 'deleteCategory'])
 //Borrow API
 Route::get("/borrows", [BorrowController::class, 'getBorrow']);
 Route::get("/borrows/{id}", [BorrowController::class, 'getBorrowById']);
-Route::post("/borrows", [BorrowController::class, 'addBorrow']);
+Route::post("/borrows", [BorrowController::class, 'addBorrow'])->name('borrow.add');
 Route::put("/borrows/{id}", [BorrowController::class, 'updateBorrow']);
 Route::delete("/borrows/{id}", [BorrowController::class, 'deleteBorrow']);
 Route::get("/borrows/return/{id}", [BorrowController::class, 'returnBorrow'])->name('borrow.return');

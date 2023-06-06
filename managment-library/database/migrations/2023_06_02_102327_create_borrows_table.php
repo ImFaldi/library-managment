@@ -23,8 +23,8 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->date('borrow_date');
             $table->date('return_date');
-            $table->enum('status', ['borrowed', 'returned']);
-            $table->string('penalty');
+            $table->enum('status', ['borrowed', 'returned'])->default('borrowed');
+            $table->string('penalty')->default(0);
             $table->timestamps();
         });
     }
