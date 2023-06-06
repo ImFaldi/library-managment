@@ -292,14 +292,14 @@
     </div>
 
     {{-- modal add new member --}}
-    <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+    <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-form-add-member"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="card card-plain">
                         <div class="card-header pb-0 text-left">
-                            <h3 class="font-weight-bolder text-info text-gradient">Register</h3>
+                            <h3 class="font-weight-bolder text-success text-gradient">Add Member</h3>
                         </div>
                         <div class="card-body">
                             <form role="form text-left" method="POST" action="{{ route('register') }}">
@@ -319,20 +319,60 @@
                                     <input type="password" class="form-control" placeholder="Password"
                                         aria-label="Password" aria-describedby="password-addon" name="password">
                                 </div>
-                                <label>Role</label>
+                                <label>Phone Number</label>
                                 <div class="input-group mb-3">
-                                    <select class="form-control" name="role">
-                                        <option value="member">Member</option>
-                                    </select>
+                                    <input type="varchar" class="form-control" placeholder="Phone Number"
+                                        aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
+                                        <input type="hidden" class="form-control" name="role" value="member">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit"
+                                        class="btn btn-round bg-gradient-success btn-lg w-100 mt-4 mb-0">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card card-plain">
+                        <div class="card-header pb-0 text-left">
+                            <h3 class="font-weight-bolder text-success text-gradient">Add Member</h3>
+                        </div>
+                        <div class="card-body">
+                            <form role="form text-left" method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <label>Name</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Name" aria-label="Name"
+                                        aria-describedby="name-addon" name="name">
+                                </div>
+                                <label>Email</label>
+                                <div class="input-group mb-3">
+                                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                                        aria-describedby="email-addon" name="email">
+                                </div>
+                                <label>Password</label>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Password"
+                                        aria-label="Password" aria-describedby="password-addon" name="password">
                                 </div>
                                 <label>Phone Number</label>
                                 <div class="input-group mb-3">
                                     <input type="varchar" class="form-control" placeholder="Phone Number"
                                         aria-label="Phone Number" aria-describedby="phone-addon" name="phone">
+                                        <input type="hidden" class="form-control" name="role" value="member">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit"
-                                        class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Submit</button>
+                                        class="btn btn-round bg-gradient-success btn-lg w-100 mt-4 mb-0">Submit</button>
                                 </div>
                             </form>
                         </div>
