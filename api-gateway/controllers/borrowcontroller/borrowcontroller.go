@@ -23,7 +23,9 @@ func Create(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	borrow := models.Borrow{Book_id: input.Book_id, User_id: input.User_id, Borrow_date: input.Borrow_date, Return_date: input.Return_date, Status: input.Status, Penalty: input.Penalty}
+
+	borrow := models.Borrow{User_id: input.User_id, Book_id: input.Book_id, Borrow_date: input.Borrow_date, Return_date: input.Return_date, Status: input.Status, Penalty: input.Penalty}
+
 	models.DB.Create(&borrow)
 
 	c.JSON(http.StatusOK, gin.H{"data": borrow})
@@ -88,7 +90,7 @@ func Return(c *gin.Context) {
 		return
 	}
 
-	models.DB.Model(&borrow).Update("status", "Returned", "penalty", c.Param("penalty"))
+	models.DB.Model(&borrow).Update("status", "returned")
 
 	c.JSON(http.StatusOK, gin.H{"data": borrow})
 }

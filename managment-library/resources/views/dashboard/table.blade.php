@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 my-sm-auto ms-sm-4 me-sm-auto mx-auto mt-3">
                         {{--  button trigger modal  --}}
-                        <button type="button" class="btn bg-gradient-success w-50" data-bs-toggle="modal"
+                        <button type="button" class="btn bg-gradient-success w-50 btn-sm" data-bs-toggle="modal"
                             data-bs-target="#modal-register">
                             Add New Member
                         </button>
@@ -61,28 +61,14 @@
                                                 <h6 class="text-xs font-weight-bold mb-0">{{ $item->phone }}</h6>
                                             </td>
                                             <td>
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        {{--  button trigger modal  --}}
-                                                        <button type="button"
-                                                            class="btn bg-gradient-warning w-50 d-flex justify-content-center mb-0"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modal-edit{{ $item->id }}">
-                                                            Edit
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <button
-                                                            class="btn bg-gradient-danger w-50 d-flex justify-content-center"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-project-{{ $item->id }}').submit()">Delete</button>
-
-                                                        <form id="delete-project-{{ $item->id }}"
-                                                            action="{{ route('deleteUser', $item->id) }}" method="POST"
-                                                            class="mb-0">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                    </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    {{--  button trigger modal  --}}
+                                                    <button type="button"
+                                                        class="btn bg-gradient-primary w-50 d-flex justify-content-center"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modal-edit{{ Auth::user()->id }}">
+                                                        Edit
                                                 </div>
-
                                             </td>
                                         </tr>
                                         {{-- modal edit member --}}
@@ -93,7 +79,7 @@
                                                     <div class="modal-body p-0">
                                                         <div class="card card-plain">
                                                             <div class="card-header pb-0 text-left">
-                                                                <h3 class="font-weight-bolder text-primary text-gradient">
+                                                                <h3 class="font-weight-bolder text-warning text-gradient">
                                                                     Edit</h3>
                                                             </div>
                                                             <div class="card-body">
@@ -132,7 +118,7 @@
                                                                     </div>
                                                                     <div class="text-center">
                                                                         <button type="submit"
-                                                                            class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Update</button>
+                                                                            class="btn btn-round bg-gradient-warning btn-lg w-100 mt-4 mb-0">Update</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -156,7 +142,7 @@
                     <div class="col-lg-3 col-md-6 my-sm-auto ms-sm-4 me-sm-auto mx-auto mt-3">
                         {{--  button trigger modal  --}}
                         <button type="button" class="btn bg-gradient-primary w-50" data-bs-toggle="modal"
-                            data-bs-target="#modal-book">
+                            data-bs-target="#modal-edit">
                             Add New Book
                         </button>
                     </div>
@@ -243,7 +229,18 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Borrowing Table</h6>
+                        <div class="row">
+                            <div class="col-6 d-flex align-items-center">
+                                <h6>Borrow Table</h6>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button class="btn bg-gradient-success btn-sm mb-0"type="button"
+                                    class="btn bg-gradient-success w-50 btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#modal-register">
+                                    <i class="fas fa-plus" style="font-size: 14px;"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -289,10 +286,22 @@
                                                 <h6 class="text-xs font-weight-bold mb-0">{{ $item->return_date }}</h6>
                                             </td>
                                             <td>
-                                                <h6 class="text-xs font-weight-bold mb-0">{{ $item->status }}</h6>
+                                                @if ($item->status == 'borrowed')
+                                                    <span class="badge badge-sm bg-gradient-warning">Borrowed</span>
+                                                @elseif($item->status == 'returned')
+                                                    <span class="badge badge-sm bg-gradient-success">Returned</span>
+                                                @endif
                                             </td>
                                             <td>
-                                                <h6 class="text-xs font-weight-bold mb-0">{{ $item->penalty }}</h6>
+                                                <h6 class="text-xs font-weight-bold mb-0">
+                                                    @foreach ($penalty as $item2)
+                                                        @if ($item->id == $item2->id)
+                                                            Rp {{ $item2->penalty }}
+                                                        @else
+                                                            Rp 0
+                                                        @endif
+                                                    @endforeach
+                                                </h6>
                                             </td>
                                         </tr>
                                     @endforeach

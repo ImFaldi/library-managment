@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Mockery\Undefined;
 
 class BorrowController extends Controller
 {
@@ -50,18 +51,22 @@ class BorrowController extends Controller
 
     public function addBorrow(Request $request)
     {
+        $temp = $request->all();
+
+        //masukan data user_id ke $response
+        $user_id = (int) $temp['user_id'];
+        $book_id = (int) $temp['book_id'];
         $response = Http::post('http://localhost:8080/api/borrows', [
-            'user_id' => $request->user_id,
-            'book_id' => $request->book_id,
+            'user_id' => $user_id,
+            'book_id' => $book_id,
             'borrow_date' => $request->borrow_date,
             'return_date' => $request->return_date,
             'status' => $request->status,
             'penalty' => $request->penalty
         ]);
 
-        $data = $response->json();
 
-        return response()->json($data, 200);
+        return redirect()->intended('dashboard')->with('success', 'Book has been borrowed');
     }
 
     public function returnBorrow(Request $request, $id)
@@ -74,8 +79,6 @@ class BorrowController extends Controller
             'status' => $request->status,
             'penalty' => $request->penalty
         ]);
-
-        $data = $response->json();
 
         return redirect()->intended('dashboard')->with('success', 'Book has been returned');
     }
