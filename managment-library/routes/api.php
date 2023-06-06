@@ -26,7 +26,7 @@ use App\Http\Controllers\AuthController;
 Route::get("/books", [BookController::class, 'getBook']);
 Route::get("/books/{id}", [BookController::class, 'getBookById']);
 Route::post("/books", [BookController::class, 'addBook'])->name('addBook');
-Route::put("/books/{id}", [BookController::class, 'updateBook']);
+Route::put("/books/{id}", [BookController::class, 'updateBook'])->name('updateBook');
 Route::delete("/books/{id}", [BookController::class, 'deleteBook']);
 
 //Author API

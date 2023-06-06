@@ -22,5 +22,12 @@ class BookSeed extends Seeder
             'stock' => 10,
             'year' => 2000
         ]);
+        Book::create([
+            'title' => 'Manga',
+            'category_id' => 1,
+            'author_id' => 1,
+            'stock' => 10,
+            'year' => 1999
+        ]);
     }
 }
