@@ -70,7 +70,7 @@
                                                     <button type="button"
                                                         class="btn bg-gradient-warning w-50 d-flex justify-content-center mb-0"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#modal-edit{{ Auth::user()->id }}">
+                                                        data-bs-target="#modal-edit{{ $item->id }}">
                                                         Edit
                                                 </div>
                                             </td>
