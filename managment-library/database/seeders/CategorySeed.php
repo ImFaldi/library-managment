@@ -22,5 +22,29 @@ class CategorySeed extends Seeder
         Category::create([
             'title' => 'Adventure',
         ]);
+
+        Category::create([
+            'title' => 'Romance',
+        ]);
+
+        Category::create([
+            'title' => 'Mystery',
+        ]);
+
+        Category::create([
+            'title' => 'Horror',
+        ]);
+
+        Category::create([
+            'title' => 'Thriller',
+        ]);
+
+        Category::create([
+            'title' => 'Children',
+        ]);
+
+        Category::create([
+            'title' => 'Poetry',
+        ]);
     }
 }

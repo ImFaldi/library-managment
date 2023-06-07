@@ -41,5 +41,14 @@ class BorrowSeed extends Seeder
             'status' => 'borrowed',
             'penalty' => '0'
         ]);
+
+        Borrow::create([
+            'user_id' => 1,
+            'book_id' => 3,
+            'borrow_date' => date('Y-m-d', strtotime('-2 day', strtotime(date('Y-m-d')))),
+            'return_date' => date('Y-m-d', strtotime('+7 day', strtotime(date('Y-m-d')))),
+            'status' => 'borrowed',
+            'penalty' => '0'
+        ]);
     }
 }
