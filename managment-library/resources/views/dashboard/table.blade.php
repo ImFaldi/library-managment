@@ -294,13 +294,6 @@
                             <div class="col-6 d-flex align-items-center">
                                 <h6>Borrow Table</h6>
                             </div>
-                            <div class="col-6 text-end">
-                                <button class="btn bg-gradient-success btn-sm mb-0"type="button"
-                                    class="btn bg-gradient-success w-50 btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-register">
-                                    <i class="fas fa-plus" style="font-size: 14px;"></i>
-                                </button>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
