@@ -92,6 +92,7 @@ func GetBookByCategory(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": books,
+		"msg":  "Book by category",
 	})
 }
 
@@ -104,6 +105,7 @@ func GetBookByAuthor(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": books,
+		"msg":  "Book by author",
 	})
 }
 
@@ -121,5 +123,6 @@ func GetBookByUser(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": books,
+		"msg":  "Book by user",
 	})
 }

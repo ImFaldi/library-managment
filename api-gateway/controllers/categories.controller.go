@@ -42,6 +42,7 @@ func NewCategory(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": category,
+		"msg":  "Category created",
 	})
 }
 
@@ -63,6 +64,7 @@ func UpdateCategory(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": category,
+		"msg":  "Category updated",
 	})
 }
 
@@ -76,6 +78,7 @@ func DeleteCategory(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": true,
+		"msg":  "Category deleted",
 	})
 }
 
@@ -88,5 +91,6 @@ func GetCategoryBooks(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": books,
+		"msg":  "Books by category",
 	})
 }

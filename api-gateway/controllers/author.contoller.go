@@ -42,6 +42,7 @@ func NewAuthor(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": author,
+		"msg":  "Author created",
 	})
 }
 
@@ -64,6 +65,7 @@ func UpdateAuthor(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"data": author,
+		"msg":  "Author updated",
 	})
 }
 
