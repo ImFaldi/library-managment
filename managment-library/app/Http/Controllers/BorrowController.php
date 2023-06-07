@@ -11,7 +11,7 @@ class BorrowController extends Controller
 
     public function getBorrow()
     {
-        $response = Http::get('http://localhost:8080/api/borrows');
+        $response = Http::get('http://localhost:3000/api/borrow');
         $data = $response->json();
 
         return response()->json($data, 200);
@@ -19,7 +19,7 @@ class BorrowController extends Controller
 
     public function getBorrowById($id)
     {
-        $response = Http::get('http://localhost:8080/api/borrows/' . $id);
+        $response = Http::get('http://localhost:3000/api/borrow/' . $id);
         $data = $response->json();
 
         return response()->json($data, 200);
@@ -27,7 +27,7 @@ class BorrowController extends Controller
 
     public function updateBorrow(Request $request, $id)
     {
-        $response = Http::put('http://localhost:8080/api/borrows/' . $id, [
+        $response = Http::put('http://localhost:3000/api/borrow/' . $id, [
             'user_id' => $request->user_id,
             'book_id' => $request->book_id,
             'borrow_date' => $request->borrow_date,
@@ -43,7 +43,7 @@ class BorrowController extends Controller
 
     public function deleteBorrow($id)
     {
-        $response = Http::delete('http://localhost:8080/api/borrows/' . $id);
+        $response = Http::delete('http://localhost:3000/api/borrow/' . $id);
         $data = $response->json();
 
         return response()->json($data, 200);

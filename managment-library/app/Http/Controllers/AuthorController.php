@@ -11,7 +11,7 @@ class AuthorController extends Controller
 
     public function getAuthor()
     {
-        $response = Http::get('http://localhost:8080/api/authors');
+        $response = Http::get('http://localhost:3000/api/author');
         $data = $response->json();
 
         return response()->json($data, 200);
@@ -19,7 +19,7 @@ class AuthorController extends Controller
 
     public function getAuthorById($id)
     {
-        $response = Http::get('http://localhost:8080/api/authors/' . $id);
+        $response = Http::get('http://localhost:3000/api/author/' . $id);
         $data = $response->json();
 
         return response()->json($data, 200);
@@ -27,7 +27,7 @@ class AuthorController extends Controller
 
     public function addAuthor(Request $request)
     {
-        $response = Http::post('http://localhost:8080/api/authors', [
+        $response = Http::post('http://localhost:3000/api/author', [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone
@@ -39,7 +39,7 @@ class AuthorController extends Controller
 
     public function updateAuthor(Request $request, $id)
     {
-        $response = Http::put('http://localhost:8080/api/authors/' . $id, [
+        $response = Http::put('http://localhost:3000/api/author/' . $id, [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone
@@ -51,7 +51,7 @@ class AuthorController extends Controller
 
     public function deleteAuthor($id)
     {
-        $response = Http::delete('http://localhost:8080/api/authors/' . $id);
+        $response = Http::delete('http://localhost:3000/api/author/' . $id);
         $data = $response->json();
 
         return response()->json($data, 200);
