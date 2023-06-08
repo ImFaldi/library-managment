@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "API GOlang",
+			"name": "API Golang",
 			"item": [
 				{
 					"name": "User",
@@ -52,7 +52,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"irva\",\r\n    \"email\": \"irva@gmail.com\",\r\n    \"password\": \"Irvan123\",\r\n    \"role\": \"admin\"\r\n}",
+									"raw": "{\r\n    \"name\": \"irvan\",\r\n    \"email\": \"irva@gmail.com\",\r\n    \"password\": \"Irvan123\",\r\n    \"role\": \"admin\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -92,15 +92,15 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/users/1",
+									"raw": "http://localhost:3000/api/user/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8000",
+									"port": "3000",
 									"path": [
 										"api",
-										"users",
+										"user",
 										"1"
 									]
 								}
@@ -152,7 +152,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/user/1",
+									"raw": "http://localhost:3000/api/user/4",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -161,7 +161,7 @@
 									"path": [
 										"api",
 										"user",
-										"1"
+										"4"
 									]
 								}
 							},
