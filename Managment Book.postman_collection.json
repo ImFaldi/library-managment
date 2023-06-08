@@ -114,7 +114,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"\",\r\n    \"email\": \"\",\r\n    \"role\": \"\"\r\n}",
+									"raw": "{\r\n    \"name\": \"irvan Wow\",\r\n    \"email\": \"irva@gmail.com\",\r\n    \"password\": \"Irvan123\",\r\n    \"role\": \"admin\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -122,16 +122,16 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/users/1",
+									"raw": "http://localhost:3000/api/user/4",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8000",
+									"port": "3000",
 									"path": [
 										"api",
-										"users",
-										"1"
+										"user",
+										"4"
 									]
 								}
 							},
