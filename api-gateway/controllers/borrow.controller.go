@@ -51,6 +51,7 @@ func UpdateBorrow(c *fiber.Ctx) error {
 	id := c.Params("id")
 
 	borrow := new(models.Borrow)
+	borrowInput := new(models.BorrowInput)
 
 	if err := c.BodyParser(borrow); err != nil {
 		return c.Status(503).JSON(fiber.Map{
@@ -59,17 +60,19 @@ func UpdateBorrow(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Model(&borrow).Where("id = ?", id).Updates(models.Borrow{
-		User_id:     borrow.User_id,
-		Book_id:     borrow.Book_id,
-		Borrow_date: borrow.Borrow_date,
-		Return_date: borrow.Return_date,
-		Status:      borrow.Status,
-		Penalty:     borrow.Penalty,
-	})
+	database.DB.Preload("User").Preload("Book").Preload("Book.Category").Preload("Book.Author").Find(&borrow, id)
+
+	borrow.User_id = borrowInput.User_id
+	borrow.Book_id = borrowInput.Book_id
+	borrow.Borrow_date = borrowInput.Borrow_date
+	borrow.Return_date = borrowInput.Return_date
+	borrow.Status = borrowInput.Status
+	borrow.Penalty = borrowInput.Penalty
+
+	database.DB.Preload("User").Preload("Book").Preload("Book.Category").Preload("Book.Author").Save(&borrow)
 
 	return c.JSON(fiber.Map{
-		"data": borrow,
+		"data": borrowInput,
 		"msg":  "Borrow updated",
 	})
 }
