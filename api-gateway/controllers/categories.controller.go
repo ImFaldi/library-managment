@@ -1,7 +1,9 @@
 package controllers
 
 import (
-	"github.com/gofiber/fiber"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
 	"github.com/indrabpn12/FinalProjectGolang.git/database"
 	"github.com/indrabpn12/FinalProjectGolang.git/models"
 )
@@ -31,6 +33,8 @@ func GetCategory(c *fiber.Ctx) error {
 func NewCategory(c *fiber.Ctx) error {
 	category := new(models.Category)
 
+	categoryInput := new(models.CategoryInput)
+
 	if err := c.BodyParser(category); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -38,12 +42,18 @@ func NewCategory(c *fiber.Ctx) error {
 		})
 	}
 
+	category.CreatedAt = time.Now()
+	category.UpdatedAt = time.Now()
+
 	database.DB.Create(&category)
 
+	categoryInput.Title = category.Title
+
 	return c.JSON(fiber.Map{
-		"data": category,
+		"data": categoryInput,
 		"msg":  "Category created",
 	})
+
 }
 
 func UpdateCategory(c *fiber.Ctx) error {
@@ -52,6 +62,8 @@ func UpdateCategory(c *fiber.Ctx) error {
 
 	category := new(models.Category)
 
+	categoryInput := new(models.CategoryInput)
+
 	if err := c.BodyParser(category); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -59,11 +71,14 @@ func UpdateCategory(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Find(&category, id)
-	database.DB.Save(&category)
+	category.UpdatedAt = time.Now()
+
+	database.DB.Model(&category).Where("id = ?", id).Updates(category)
+
+	categoryInput.Title = category.Title
 
 	return c.JSON(fiber.Map{
-		"data": category,
+		"data": categoryInput,
 		"msg":  "Category updated",
 	})
 }

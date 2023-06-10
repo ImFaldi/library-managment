@@ -1,7 +1,9 @@
 package controllers
 
 import (
-	"github.com/gofiber/fiber"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
 	"github.com/indrabpn12/FinalProjectGolang.git/database"
 	"github.com/indrabpn12/FinalProjectGolang.git/models"
 )
@@ -31,6 +33,8 @@ func GetUser(c *fiber.Ctx) error {
 func NewUser(c *fiber.Ctx) error {
 	user := new(models.User)
 
+	userInput := new(models.UserInput)
+
 	if err := c.BodyParser(user); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -38,12 +42,21 @@ func NewUser(c *fiber.Ctx) error {
 		})
 	}
 
+	user.CreatedAt = time.Now()
+	user.UpdatedAt = time.Now()
+
 	database.DB.Create(&user)
 
+	userInput.Name = user.Name
+	userInput.Email = user.Email
+	userInput.Password = user.Password
+	userInput.Role = user.Role
+
 	return c.JSON(fiber.Map{
-		"data": user,
+		"data": userInput,
 		"msg":  "User created",
 	})
+
 }
 
 func UpdateUser(c *fiber.Ctx) error {
@@ -52,7 +65,9 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	user := new(models.User)
 
-	if err := c.BodyParser(user); err != nil {
+	userInput := new(models.UserInput)
+
+	if err := c.BodyParser(userInput); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
 			"error":   err,
@@ -61,12 +76,15 @@ func UpdateUser(c *fiber.Ctx) error {
 
 	database.DB.Find(&user, id)
 
-	database.DB.Save(&user)
+	user.UpdatedAt = time.Now()
+
+	database.DB.Model(&user).Updates(userInput)
 
 	return c.JSON(fiber.Map{
-		"data": user,
+		"data": userInput,
 		"msg":  "User updated",
 	})
+
 }
 
 func DeleteUser(c *fiber.Ctx) error {

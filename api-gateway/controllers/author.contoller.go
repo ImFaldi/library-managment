@@ -1,7 +1,9 @@
 package controllers
 
 import (
-	"github.com/gofiber/fiber"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
 	"github.com/indrabpn12/FinalProjectGolang.git/database"
 	"github.com/indrabpn12/FinalProjectGolang.git/models"
 )
@@ -31,6 +33,8 @@ func GetAuthor(c *fiber.Ctx) error {
 func NewAuthor(c *fiber.Ctx) error {
 	author := new(models.Author)
 
+	authorInput := new(models.AuthorInput)
+
 	if err := c.BodyParser(author); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -38,12 +42,21 @@ func NewAuthor(c *fiber.Ctx) error {
 		})
 	}
 
+	author.CreatedAt = time.Now()
+
+	author.UpdatedAt = time.Now()
+
 	database.DB.Create(&author)
 
+	authorInput.Name = author.Name
+	authorInput.Email = author.Email
+	authorInput.Phone = author.Phone
+
 	return c.JSON(fiber.Map{
-		"data": author,
+		"data": authorInput,
 		"msg":  "Author created",
 	})
+
 }
 
 func UpdateAuthor(c *fiber.Ctx) error {
@@ -52,6 +65,8 @@ func UpdateAuthor(c *fiber.Ctx) error {
 
 	author := new(models.Author)
 
+	authorInput := new(models.AuthorInput)
+
 	if err := c.BodyParser(author); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -59,12 +74,16 @@ func UpdateAuthor(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Model(&author).Where("id = ?", id).Updates(models.Author{
-		Name: author.Name,
-	})
+	author.UpdatedAt = time.Now()
+
+	database.DB.Model(&author).Where("id = ?", id).Updates(authorInput)
+
+	authorInput.Name = author.Name
+	authorInput.Email = author.Email
+	authorInput.Phone = author.Phone
 
 	return c.JSON(fiber.Map{
-		"data": author,
+		"data": authorInput,
 		"msg":  "Author updated",
 	})
 }

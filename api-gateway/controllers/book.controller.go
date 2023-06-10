@@ -1,7 +1,9 @@
 package controllers
 
 import (
-	"github.com/gofiber/fiber"
+	"time"
+
+	"github.com/gofiber/fiber/v2"
 	"github.com/indrabpn12/FinalProjectGolang.git/database"
 	"github.com/indrabpn12/FinalProjectGolang.git/models"
 )
@@ -31,6 +33,8 @@ func GetBook(c *fiber.Ctx) error {
 func NewBook(c *fiber.Ctx) error {
 	book := new(models.Book)
 
+	bookInput := new(models.BookInput)
+
 	if err := c.BodyParser(book); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
@@ -38,10 +42,20 @@ func NewBook(c *fiber.Ctx) error {
 		})
 	}
 
-	database.DB.Preload("Category").Preload("Author").Create(&book)
+	book.CreatedAt = time.Now()
+
+	book.UpdatedAt = time.Now()
+
+	database.DB.Create(&book)
+
+	bookInput.Title = book.Title
+	bookInput.Category_id = book.Category_id
+	bookInput.Author_id = book.Author_id
+	bookInput.Year = book.Year
+	bookInput.Stock = book.Stock
 
 	return c.JSON(fiber.Map{
-		"data": book,
+		"data": bookInput,
 		"msg":  "Book created",
 	})
 }
@@ -52,19 +66,21 @@ func UpdateBook(c *fiber.Ctx) error {
 
 	book := new(models.Book)
 
-	if err := c.BodyParser(book); err != nil {
+	bookInput := new(models.BookInput)
+
+	if err := c.BodyParser(bookInput); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
 			"error":   err,
 		})
 	}
 
-	database.DB.Find(&book, id)
+	database.DB.Where("id = ?", id).First(&book)
 
-	database.DB.Model(&book).Updates(book)
+	database.DB.Model(&book).Updates(bookInput)
 
 	return c.JSON(fiber.Map{
-		"data": book,
+		"data": bookInput,
 		"msg":  "Book updated",
 	})
 }
