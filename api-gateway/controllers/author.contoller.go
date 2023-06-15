@@ -67,7 +67,7 @@ func UpdateAuthor(c *fiber.Ctx) error {
 
 	authorInput := new(models.AuthorInput)
 
-	if err := c.BodyParser(author); err != nil {
+	if err := c.BodyParser(authorInput); err != nil {
 		return c.Status(503).JSON(fiber.Map{
 			"message": "Can't parse JSON",
 			"error":   err,
